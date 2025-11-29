@@ -1,16 +1,34 @@
 package calculadora;
 
-public class TesteCalculadora{
+public class Calculadora{
 
-public static void main(String[] args){
-    Calculadora calc = new Calculadora();
+    public int somar(int a, int b){
+        return a + b;
+    }
 
-    //Testes rapidos
-    calc.calc( 2, 3 ,"+"); //esperado: 5
-    calc.calc(10, 4, "-"); //esperado: 6
-    calc.calc(3, 5, "*"); //esperado: 15
-    calc.calc(8, 2, "/"); //esperado: 4
-    calc.calc(8, 0, "/"); //esperado: zero
-    calc.calc(5, 5, "x"); //esperado: 5
-}
+    public int subtrair(int a, int b){
+        return a - b;
+    }
+
+    public int multiplicar(int a, int b){
+        return a * b;
+    }
+
+    public int dividir(int a, int b){
+        if (b == 0) {
+            throw new IllegalArgumentException("Divisão por zero não é permitida");
+        }
+        return a / b; 
+    }
+
+    public int calcular(int a, int b, String operador){
+        return switch (operador){
+            case "+" -> somar(a, b);
+            case "-" -> subtrair(a, b);
+            case "*" -> multiplicar(a, b);
+            case "/" -> dividir(a, b);
+            default -> throw new IllegalArgumentException("Operador Invalido" + operador);
+        };
+    }
+    
 }
